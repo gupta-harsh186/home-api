@@ -4,13 +4,10 @@ const Property = require("../models/Property");
 const TrustBadge = require("../models/TrustBadge");
 const LiveActivity = require("../models/LiveActivity");
 
-// Fetch unified homepage data according to Figma Screen 3
 exports.getHomeData = async (req, res) => {
     try {
-        // 1. Fetch Hero Section Configuration
         let hero = await HeroSection.findOne();
         
-        // If not found, provide a fallback matching Figma
         if (!hero) {
             hero = {
                 headline: "Live Last-Minute Deals in",
@@ -26,20 +23,14 @@ exports.getHomeData = async (req, res) => {
             };
         }
 
-        // 2. Fetch Categories (Stay, Buffet, etc.)
         const categories = await Category.find();
 
-        // 3. Fetch Live Deals (Properties)
-        // Default Lonavala & Pune deals first or all live deals
         const properties = await Property.find({ isLiveDeal: true }).populate("category");
 
-        // 4. Fetch Trust Badges
         const trustBadges = await TrustBadge.find();
 
-        // 5. Fetch Live Activity Feed
         const liveActivities = await LiveActivity.find().sort({ createdAt: -1 });
 
-        // 6. Additional static/configuration data for the page (Navbar & Footer details)
         const headerConfig = {
             logoText: "Last Minutes Deal",
             locations: ["Pune & Lonavala", "Mumbai", "Goa"],

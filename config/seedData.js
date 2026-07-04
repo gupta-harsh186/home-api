@@ -7,7 +7,6 @@ const Banner = require("../models/Banner");
 
 const seedDatabase = async () => {
     try {
-        // 1. Check if Categories exist, if not seed them
         const categoryCount = await Category.countDocuments();
         let stayCategory, buffetCategory;
 
@@ -29,7 +28,6 @@ const seedDatabase = async () => {
             buffetCategory = await Category.findOne({ slug: "buffet" });
         }
 
-        // 2. Check if HeroSection exists, if not seed it
         const heroCount = await HeroSection.countDocuments();
         if (heroCount === 0) {
             console.log(" Seeding Hero Section...");
@@ -48,7 +46,6 @@ const seedDatabase = async () => {
             console.log(" Hero Section Seeded!");
         }
 
-        // 2b. Check if Banners exist, if not seed them
         const bannerCount = await Banner.countDocuments();
         if (bannerCount === 0) {
             console.log("Seeding Banners...");
@@ -69,7 +66,6 @@ const seedDatabase = async () => {
             console.log(" Banners Seeded!");
         }
 
-        // 3. Check if TrustBadges exist, if not seed them
         const badgeCount = await TrustBadge.countDocuments();
         if (badgeCount === 0) {
             console.log(" Seeding Trust Badges...");
@@ -98,7 +94,6 @@ const seedDatabase = async () => {
             console.log(" Trust Badges Seeded!");
         }
 
-        // 4. Check if LiveActivities exist, if not seed them
         const activityCount = await LiveActivity.countDocuments();
         if (activityCount === 0) {
             console.log(" Seeding Live Activities...");
@@ -127,12 +122,10 @@ const seedDatabase = async () => {
             console.log(" Live Activities Seeded!");
         }
 
-        // 5. Check if Properties exist, if not seed them (matching Figma)
         const propertyCount = await Property.countDocuments();
         if (propertyCount === 0 && stayCategory) {
             console.log(" Seeding Properties...");
 
-            // We seed 18 properties to match the exact 18-card grid layout in the Figma design
             const propertiesToSeed = [];
             for (let i = 1; i <= 18; i++) {
                 propertiesToSeed.push({
@@ -148,7 +141,7 @@ const seedDatabase = async () => {
                     discountPercentage: 51,
                     tag: "UP TO 50% OFF",
                     category: stayCategory._id,
-                    isFeatured: i % 3 === 0, // make some featured
+                    isFeatured: i % 3 === 0,
                     isLiveDeal: true
                 });
             }

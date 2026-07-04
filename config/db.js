@@ -7,7 +7,6 @@ const connectDB = async () => {
 
         console.log(" MongoDB Connected");
 
-        // Auto-seed data for tech assignment
         await seedDatabase();
     } catch (error) {
         console.error(" MongoDB Connection Failed");

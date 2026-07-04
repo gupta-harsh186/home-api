@@ -1,6 +1,5 @@
 const Property = require("../models/Property");
 
-// Fetch all properties
 exports.getAllProperties = async (req, res) => {
     try {
         const { category, featured } = req.query;
@@ -28,7 +27,6 @@ exports.getAllProperties = async (req, res) => {
     }
 };
 
-// Create a new property
 exports.createProperty = async (req, res) => {
     try {
         const { 
