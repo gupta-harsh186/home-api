@@ -21,8 +21,8 @@ This is the backend API service for the **Last Minutes Deal** platform, powering
 ## Folder Structure
 ```
 ├── config/
-│   ├── db.js             # Database connection setup
-│   └── seedData.js       # Auto-seeding logic for initial mockup data
+│   ├── db.js             
+│   └── seedData.js      
 ├── controllers/
 │   ├── bookingController.js
 │   ├── buffetController.js
@@ -42,10 +42,10 @@ This is the backend API service for the **Last Minutes Deal** platform, powering
 │   ├── buffetRoutes.js
 │   ├── homeRoutes.js
 │   └── propertyRoutes.js
-├── .env                  # Environment Variables (Port & Mongo URI)
+├── .env                  
 ├── .gitignore
-├── app.js                # Express app initialization
-├── server.js             # Server startup entry point
+├── app.js                
+├── server.js             
 └── package.json
 ```
 
