@@ -1,4 +1,6 @@
+const mongoose = require("mongoose");
 const Property = require("../models/Property");
+const Category = require("../models/category");
 
 exports.getAllProperties = async (req, res) => {
     try {
@@ -6,7 +8,20 @@ exports.getAllProperties = async (req, res) => {
         let query = {};
 
         if (category) {
-            query.category = category;
+            if (mongoose.Types.ObjectId.isValid(category)) {
+                query.category = category;
+            } else {
+                const foundCategory = await Category.findOne({ slug: category.toLowerCase() });
+                if (foundCategory) {
+                    query.category = foundCategory._id;
+                } else {
+                    return res.json({
+                        success: true,
+                        count: 0,
+                        data: []
+                    });
+                }
+            }
         }
         if (featured) {
             query.isFeatured = featured === "true";

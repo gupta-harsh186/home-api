@@ -16,8 +16,12 @@ app.get("/", (req, res) => {
 
 const homeRoutes = require("./routes/homeRoutes");
 const propertyRoutes = require("./routes/propertyRoutes");
+const buffetRoutes = require("./routes/buffetRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
 
 app.use("/api/home", homeRoutes);
 app.use("/api/properties", propertyRoutes);
+app.use("/api/buffets", buffetRoutes);
+app.use("/api/bookings", bookingRoutes);
 
 module.exports = app;
